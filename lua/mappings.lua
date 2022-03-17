@@ -19,7 +19,7 @@ vim.g.mapleader = ' '
 
 -- Saving files
 mapper('n', '<C-s>', ':w<CR>')
-mapper('n', '<leader>s', ':w<CR>')
+mapper('n', '<leader>w', ':w<CR>')
 
 -- Change Windows
 mapper('n', '<C-j>', '<C-w>j')
@@ -39,9 +39,16 @@ mapper('n', '<S-l>', ':bnext<CR>')
 mapper('n', '<S-h>', ':bprevious<CR>')
 
 -- Modify buffers
-mapper('n', '<leader>bk', ':bp|bd#<CR>')
-mapper('n', '<leader>bv', ':vnew<CR>')
-mapper('n', '<leader>ba', ':%bd|e#|bd#<CR>')
+mapper('n', '<leader>bv', ':vnew<CR>') -- Open new buffer in vertical mode
+mapper('n', '<leader>bk', ':bp|bd#<CR>') -- Kill current buffer
+mapper('n', '<leader>ba', ':%bd|e#|bd#<CR>') -- Kill all buffers except current
+
+-- Search and Replace
+mapper('v', '/', "y/<C-R>=escape(@\",'/\')<CR><CR>") -- Search selection
+mapper('n', '<leader>ra', ':%s///gc<Left><Left><Left>') -- * with confirmation
+mapper('v', '<leader>ra', ':s///gc<Left><Left><Left>') -- * with confirmation
+mapper('v', '<leader>rr', "\"sy:let @/=@s<CR>cgn") -- replace selection (press . to repeat replacement)
+mapper('n', '<leader>rr', "cgn") -- replace highlight (press . to repeat replacement)
 
 --  Toggle Numbers
 mapper('n', '<leader>n', ':set nu! rnu!<CR>')
@@ -50,7 +57,7 @@ mapper('n', '<leader>n', ':set nu! rnu!<CR>')
 mapper('n', '<Esc>', ':noh<CR>')
 
 -- Terminal
-mapper('t', '<Esc>', '<C-\\><C-n>')
+mapper('t', '<Esc>', '<C-\\><C-n>') -- escape from terminal mode
 mapper('n', '<leader>tt', ':terminal<CR>')
 mapper('n', '<leader>tv', ':vnew<CR>:terminal<CR>')
 mapper('n', '<leader>th', ':new<CR>:terminal<CR>')

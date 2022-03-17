@@ -6,6 +6,9 @@ vim.wo.foldmethod = 'syntax'
 -- Work with several buffers
 vim.o.hidden = true
 
+-- Confirm save before deleting buffer
+vim.o.confirm = true
+
 -- Nice Time
 vim.o.updatetime = 250
 
